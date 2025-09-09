@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    /* Fondo de toda la página */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://i.redd.it/2bhl9l8m4po71.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Contenedor principal */
+    main.card {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro */
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Encabezado principal */
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    /* Tabla */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(0, 0, 0, 0.3); /* Fondo general transparente */
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      font-size: 1.1em;
+      color: #fff; /* Texto blanco */
+    }
+
+    /* Encabezado de tabla más sólido */
+    th {
+      background-color: rgba(0, 0, 0, 0.8); /* Más sólido que el resto */
+      font-weight: bold;
+    }
+
+    /* Filas normales */
+    tr {
+      transition: background 0.3s ease-in-out;
+    }
+
+    /* Efecto hover en filas */
+    tr:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>USUARIOS</h1>
+    <table>
+      <tr>
+        <th>Username</th>
+        <th>Password</th>
+      </tr>
+      <tbody id="user_table"></tbody>
+    </table>  
+  </main>
+  <script src="../Js/local_storage.js"></script>
+</body>
+</html>
