@@ -16,7 +16,14 @@ function emailIsValid(email) {
 }
 
 function validatePassword(password) {
-    return password.length >= 6;
+    const minLength = password.length >= 6;
+    const hasUppercase = /[A-Z]/.test(password);
+
+    return {
+        minLength,
+        hasUppercase,
+        isValid: minLength && hasUppercase
+    };
 }
 
 // Mostrar mensajes
@@ -36,8 +43,16 @@ function validateForm() {
         return;
     }
 
-    if (!validatePassword(password)) {
+    const passwordCheck = validatePassword(password);
+
+    if (!passwordCheck.minLength) {
         showMessage('Password must be at least 6 characters long.', 'error');
+        btn.disabled = true;
+        return;
+    }
+
+    if (!passwordCheck.hasUppercase) {
+        showMessage('Password must contain at least one uppercase letter.', 'error');
         btn.disabled = true;
         return;
     }
@@ -51,15 +66,15 @@ function validateForm() {
 usernameInput.addEventListener('input', validateForm);
 passwordInput.addEventListener('input', validateForm);
 
-
 // Guardar usuario en localStorage y validar login
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const username = usernameInput.value.trim();
     const password = passwordInput.value.trim();
+    const passwordCheck = validatePassword(password);
 
-    if (emailIsValid(username) && validatePassword(password)) {
+    if (emailIsValid(username) && passwordCheck.isValid) {
         // Guardar en localStorage
         const users = JSON.parse(localStorage.getItem("users")) || [];
         users.push({ username, password });
@@ -71,4 +86,3 @@ form.addEventListener('submit', (event) => {
         showMessage('Login failed. Please try again.', 'error');
     }
 });
-
